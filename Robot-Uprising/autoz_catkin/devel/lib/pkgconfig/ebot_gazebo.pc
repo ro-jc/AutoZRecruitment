@@ -1,4 +1,4 @@
-prefix=/home/ro/autoz_catkin/devel
+prefix=/home/ro/git/AutoZRecruitment/Robot-Uprising/autoz_catkin/devel
 
 Name: ebot_gazebo
 Description: Description of ebot_gazebo

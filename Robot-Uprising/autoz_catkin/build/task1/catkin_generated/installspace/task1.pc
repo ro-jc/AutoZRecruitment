@@ -1,4 +1,4 @@
-prefix=/home/ro/autoz_catkin/install
+prefix=/home/ro/git/AutoZRecruitment/Robot-Uprising/autoz_catkin/install
 
 Name: task1
 Description: Description of task1

@@ -1,2 +1,2 @@
 ebot_description:ebot_gazebo:task1
--DCATKIN_DEVEL_PREFIX=/home/ro/autoz_catkin/devel -DCMAKE_INSTALL_PREFIX=/home/ro/autoz_catkin/install -G Unix Makefiles
+-DCATKIN_DEVEL_PREFIX=/home/ro/git/AutoZRecruitment/Robot-Uprising/autoz_catkin/devel -DCMAKE_INSTALL_PREFIX=/home/ro/git/AutoZRecruitment/Robot-Uprising/autoz_catkin/install -G Unix Makefiles

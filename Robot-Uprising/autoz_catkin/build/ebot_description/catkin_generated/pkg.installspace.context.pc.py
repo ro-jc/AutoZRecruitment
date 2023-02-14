@@ -4,5 +4,5 @@ PROJECT_PKG_CONFIG_INCLUDE_DIRS = "".split(';') if "" != "" else []
 PROJECT_CATKIN_DEPENDS = "".replace(';', ' ')
 PKG_CONFIG_LIBRARIES_WITH_PREFIX = "".split(';') if "" != "" else []
 PROJECT_NAME = "ebot_description"
-PROJECT_SPACE_DIR = "/home/ro/autoz_catkin/install"
+PROJECT_SPACE_DIR = "/home/ro/git/AutoZRecruitment/Robot-Uprising/autoz_catkin/install"
 PROJECT_VERSION = "0.0.0"

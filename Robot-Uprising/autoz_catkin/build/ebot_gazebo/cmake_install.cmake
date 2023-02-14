@@ -1,8 +1,8 @@
-# Install script for directory: /home/ro/autoz_catkin/src/ebot_gazebo
+# Install script for directory: /home/ro/git/AutoZRecruitment/Robot-Uprising/autoz_catkin/src/ebot_gazebo
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/ro/autoz_catkin/install")
+  set(CMAKE_INSTALL_PREFIX "/home/ro/git/AutoZRecruitment/Robot-Uprising/autoz_catkin/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -38,25 +38,25 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/ro/autoz_catkin/build/ebot_gazebo/catkin_generated/installspace/ebot_gazebo.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/ro/git/AutoZRecruitment/Robot-Uprising/autoz_catkin/build/ebot_gazebo/catkin_generated/installspace/ebot_gazebo.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/ebot_gazebo/cmake" TYPE FILE FILES
-    "/home/ro/autoz_catkin/build/ebot_gazebo/catkin_generated/installspace/ebot_gazeboConfig.cmake"
-    "/home/ro/autoz_catkin/build/ebot_gazebo/catkin_generated/installspace/ebot_gazeboConfig-version.cmake"
+    "/home/ro/git/AutoZRecruitment/Robot-Uprising/autoz_catkin/build/ebot_gazebo/catkin_generated/installspace/ebot_gazeboConfig.cmake"
+    "/home/ro/git/AutoZRecruitment/Robot-Uprising/autoz_catkin/build/ebot_gazebo/catkin_generated/installspace/ebot_gazeboConfig-version.cmake"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/ebot_gazebo" TYPE FILE FILES "/home/ro/autoz_catkin/src/ebot_gazebo/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/ebot_gazebo" TYPE FILE FILES "/home/ro/git/AutoZRecruitment/Robot-Uprising/autoz_catkin/src/ebot_gazebo/package.xml")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/ebot_gazebo" TYPE DIRECTORY FILES
-    "/home/ro/autoz_catkin/src/ebot_gazebo/launch"
-    "/home/ro/autoz_catkin/src/ebot_gazebo/models"
-    "/home/ro/autoz_catkin/src/ebot_gazebo/worlds"
+    "/home/ro/git/AutoZRecruitment/Robot-Uprising/autoz_catkin/src/ebot_gazebo/launch"
+    "/home/ro/git/AutoZRecruitment/Robot-Uprising/autoz_catkin/src/ebot_gazebo/models"
+    "/home/ro/git/AutoZRecruitment/Robot-Uprising/autoz_catkin/src/ebot_gazebo/worlds"
     )
 endif()
 

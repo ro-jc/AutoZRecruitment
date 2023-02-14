@@ -1,6 +1,6 @@
 <launch>
 
-  <arg name="world_name" default="/home/ro/autoz_catkin/src/ebot_description/worlds/racetrack_day_empty.world"/>
+  <arg name="world_name" default="/home/ro/git/AutoZRecruitment/Robot-Uprising/autoz_catkin/src/ebot_description/worlds/racetrack_day_empty.world"/>
   <arg name="paused" default="false"/>
   <arg name="use_sim_time" default="true"/>
   <arg name="gui" default="true"/>
