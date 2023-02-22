@@ -107,11 +107,11 @@ def find_center(image, plot=False):
     
     frame = get_frame()
     
-class Skidsteer():
+class LaneFollow():
     def __init__(self) -> None:
-        rospy.init_node('skidsteer')
+        rospy.init_node('lane_follow')
         
-        self.pub = rospy.Publisher('/cmd_vel', Twist, latch=True)
+        self.pub = rospy.Publisher('/cmd_vel', Twist, latch=True, queue_size=10)
         
         rospy.Subscriber('/camera/color/image_raw', Image, self.drive)
         rospy.spin()
@@ -132,6 +132,7 @@ class Skidsteer():
         command.angular.z = scale_factor*(center - true_center)
         
         self.pub.publish(command)
+        print(f'Publishing {command}')
         
 if __name__ == '__main__':
-    Skidsteer()
+    LaneFollow()
