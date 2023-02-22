@@ -3,6 +3,7 @@
 import cv2 as cv
 import numpy as np
 import matplotlib.pyplot as plt
+from time import sleep
 
 import rospy
 from cv_bridge import CvBridge
@@ -15,13 +16,16 @@ VIDEO_DIMENSIONS = (640, 480)
 
 def process_frame(image):
     image = cv.GaussianBlur(image, (3,3), 100)
-    
-    
 
-    (_, _, R) = cv.split(image)
+    (B, G, R) = cv.split(image)
     threshold_red = cv.inRange(R, 100, 255)
+    threshold_blue = cv.inRange(B, 100, 255)
+    threshold_green = cv.inRange(G, 100, 255)
+    # cv.imshow('',threshold_red);cv.waitKey(0);cv.destroyAllWindows()
+    
+    final_mask = (threshold_red & threshold_blue & threshold_green) | threshold_red
 
-    merged = cv.merge([threshold_red,threshold_red,threshold_red])
+    merged = cv.merge([final_mask,final_mask,final_mask])
 
     roi = np.float32(
            ((200, 92),
@@ -42,35 +46,35 @@ def process_frame(image):
     # inverse_transformation_matrix = cv.getPerspectiveTransform(desired, roi)
 
     warped_image = cv.warpPerspective(merged, transformation_matrix, VIDEO_DIMENSIONS, flags=(cv.INTER_LINEAR))
-    # warped_height = warped_image.shape[0]
-    # histogram = np.sum(warped_image[warped_height//2:,:], axis=0)
-    # mid = np.int(histogram.shape[0]/2)
-    # l_max = np.argmax(histogram[:mid])
-    # r_max = np.argmax(histogram[mid:]) + mid
-    # center = np.int((r_max + l_max)/2)
 
     return warped_image
 
 
 def find_center(image, plot=False):
+    # black = np.zeros((480,200,3), np.uint8)
+    # image[:, 220:420] = black
+    
     h = image.shape[0]
-    histogram = np.sum(image[h//2:, :], axis=0)
+    # histogram = np.sum(image[h//2:, :], axis=0)
+    histogram = np.sum(image, axis=0)
     
     mid = np.int(histogram.shape[0]/2)
     
-    l_max = np.argmax(histogram[:mid])
-    r_max = np.argmax(histogram[mid:]) + mid
+    l_max = np.argmax(histogram[:mid-50])
+    r_max = np.argmax(histogram[mid+50:]) + mid
     
     center = np.int((l_max+r_max)/2)
     
     if plot:
-        figure, (ax1, ax2) = plt.subplots(2,1) # 2 row, 1 columns
+        figure, (ax1, ax2) = plt.subplots(2,1)
         figure.set_size_inches(10, 5)
         ax1.imshow(image, cmap='gray')
         ax1.set_title("Warped Binary Frame")
         ax2.plot(histogram)
         ax2.set_title("Histogram Peaks")
         plt.show()
+        sleep(0.1)
+        plt.close()
     
     return center
 
@@ -92,28 +96,12 @@ def find_center(image, plot=False):
 # inp.release()
 # out.release()
 
-
-# def get_frame():
-#     rospy.init_node
-#     listner = rospy.Subscriber('/camera/')
-#     pass
-
-# def skidsteer():
-#     rospy.init_node('skidsteer', anonymous=True)
-    
-#     rospy.Subscriber('/camera/color/image_raw', Image, drive)
-    
-#     command = Twist()
-#     command.linear.x = 1
-#     command.angular.z = 0
-    
-    frame = get_frame()
     
 class LaneFollow():
     def __init__(self) -> None:
-        rospy.init_node('lane_follow')
+        rospy.init_node('lane_follow', anonymous=True)
         
-        self.pub = rospy.Publisher('/cmd_vel', Twist, latch=True, queue_size=10)
+        self.pub = rospy.Publisher('/cmd_vel', Twist, queue_size=10)
         
         rospy.Subscriber('/camera/color/image_raw', Image, self.drive)
         rospy.spin()
@@ -125,16 +113,16 @@ class LaneFollow():
         processed_frame = process_frame(frame)
         
         true_center = processed_frame.shape[1]//2
-        center = find_center(processed_frame)
+        center = find_center(processed_frame, plot=True)
         
-        scale_factor = 0.05
+        scale_factor = 0.01
         angular = scale_factor * (center - true_center)
 
-        if angular < 1:
+        if abs(angular) < 0.5:
             angular = 0
         
         command = Twist()
-        command.linear.x = 1
+        command.linear.x = 0.75
         command.angular.z = angular
         
         self.pub.publish(command)
