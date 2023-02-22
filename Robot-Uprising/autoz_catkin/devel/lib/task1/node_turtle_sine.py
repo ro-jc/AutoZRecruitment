@@ -3,7 +3,7 @@
 # generated from catkin/cmake/template/script.py.in
 # creates a relay to a python script source file, acting as that file.
 # The purpose is that of a symlink
-python_script = '/home/ro/git/AutoZRecruitment/Robot-Uprising/autoz_catkin/src/task1/scripts/node_turtle_sine.py'
+python_script = '/media/Common/Code/AutoZRecruitment/Robot-Uprising/autoz_catkin/src/task1/scripts/node_turtle_sine.py'
 with open(python_script, 'r') as fh:
     context = {
         '__builtins__': __builtins__,

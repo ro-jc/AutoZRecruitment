@@ -7,7 +7,9 @@
 # new environment variables
 
 # modified environment variables
-export CMAKE_PREFIX_PATH="/home/ro/git/AutoZRecruitment/Robot-Uprising/autoz_catkin/devel:$CMAKE_PREFIX_PATH"
-export PWD='/home/ro/git/AutoZRecruitment/Robot-Uprising/autoz_catkin/build'
-export ROSLISP_PACKAGE_DIRECTORIES='/home/ro/git/AutoZRecruitment/Robot-Uprising/autoz_catkin/devel/share/common-lisp'
-export ROS_PACKAGE_PATH="/home/ro/git/AutoZRecruitment/Robot-Uprising/autoz_catkin/src:$ROS_PACKAGE_PATH"
+export CMAKE_PREFIX_PATH="/media/Common/Code/AutoZRecruitment/Robot-Uprising/autoz_catkin/devel:$CMAKE_PREFIX_PATH"
+export LD_LIBRARY_PATH="/media/Common/Code/AutoZRecruitment/Robot-Uprising/autoz_catkin/devel/lib:$LD_LIBRARY_PATH"
+export PKG_CONFIG_PATH="/media/Common/Code/AutoZRecruitment/Robot-Uprising/autoz_catkin/devel/lib/pkgconfig:$PKG_CONFIG_PATH"
+export PWD='/media/Common/Code/AutoZRecruitment/Robot-Uprising/autoz_catkin/build'
+export ROSLISP_PACKAGE_DIRECTORIES='/media/Common/Code/AutoZRecruitment/Robot-Uprising/autoz_catkin/devel/share/common-lisp'
+export ROS_PACKAGE_PATH="/home/ro/Common/Code/AutoZRecruitment/Robot-Uprising/autoz_catkin/src:/media/Common/Code/AutoZRecruitment/Robot-Uprising/autoz_catkin/src:$ROS_PACKAGE_PATH"

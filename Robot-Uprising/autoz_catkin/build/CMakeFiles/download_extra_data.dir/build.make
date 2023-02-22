@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ro/git/AutoZRecruitment/Robot-Uprising/autoz_catkin/src
+CMAKE_SOURCE_DIR = /media/Common/Code/AutoZRecruitment/Robot-Uprising/autoz_catkin/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ro/git/AutoZRecruitment/Robot-Uprising/autoz_catkin/build
+CMAKE_BINARY_DIR = /media/Common/Code/AutoZRecruitment/Robot-Uprising/autoz_catkin/build
 
 # Utility rule file for download_extra_data.
 
@@ -67,6 +67,6 @@ CMakeFiles/download_extra_data.dir/clean:
 .PHONY : CMakeFiles/download_extra_data.dir/clean
 
 CMakeFiles/download_extra_data.dir/depend:
-	cd /home/ro/git/AutoZRecruitment/Robot-Uprising/autoz_catkin/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ro/git/AutoZRecruitment/Robot-Uprising/autoz_catkin/src /home/ro/git/AutoZRecruitment/Robot-Uprising/autoz_catkin/src /home/ro/git/AutoZRecruitment/Robot-Uprising/autoz_catkin/build /home/ro/git/AutoZRecruitment/Robot-Uprising/autoz_catkin/build /home/ro/git/AutoZRecruitment/Robot-Uprising/autoz_catkin/build/CMakeFiles/download_extra_data.dir/DependInfo.cmake --color=$(COLOR)
+	cd /media/Common/Code/AutoZRecruitment/Robot-Uprising/autoz_catkin/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /media/Common/Code/AutoZRecruitment/Robot-Uprising/autoz_catkin/src /media/Common/Code/AutoZRecruitment/Robot-Uprising/autoz_catkin/src /media/Common/Code/AutoZRecruitment/Robot-Uprising/autoz_catkin/build /media/Common/Code/AutoZRecruitment/Robot-Uprising/autoz_catkin/build /media/Common/Code/AutoZRecruitment/Robot-Uprising/autoz_catkin/build/CMakeFiles/download_extra_data.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/download_extra_data.dir/depend
 

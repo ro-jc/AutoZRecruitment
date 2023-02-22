@@ -1,8 +1,8 @@
-# Install script for directory: /home/ro/git/AutoZRecruitment/Robot-Uprising/autoz_catkin/src/ebot_description
+# Install script for directory: /media/Common/Code/AutoZRecruitment/Robot-Uprising/autoz_catkin/src/ebot_description
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/ro/git/AutoZRecruitment/Robot-Uprising/autoz_catkin/install")
+  set(CMAKE_INSTALL_PREFIX "/media/Common/Code/AutoZRecruitment/Robot-Uprising/autoz_catkin/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -38,17 +38,21 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/ro/git/AutoZRecruitment/Robot-Uprising/autoz_catkin/build/ebot_description/catkin_generated/installspace/ebot_description.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/media/Common/Code/AutoZRecruitment/Robot-Uprising/autoz_catkin/build/ebot_description/catkin_generated/installspace/ebot_description.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/ebot_description/cmake" TYPE FILE FILES
-    "/home/ro/git/AutoZRecruitment/Robot-Uprising/autoz_catkin/build/ebot_description/catkin_generated/installspace/ebot_descriptionConfig.cmake"
-    "/home/ro/git/AutoZRecruitment/Robot-Uprising/autoz_catkin/build/ebot_description/catkin_generated/installspace/ebot_descriptionConfig-version.cmake"
+    "/media/Common/Code/AutoZRecruitment/Robot-Uprising/autoz_catkin/build/ebot_description/catkin_generated/installspace/ebot_descriptionConfig.cmake"
+    "/media/Common/Code/AutoZRecruitment/Robot-Uprising/autoz_catkin/build/ebot_description/catkin_generated/installspace/ebot_descriptionConfig-version.cmake"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/ebot_description" TYPE FILE FILES "/home/ro/git/AutoZRecruitment/Robot-Uprising/autoz_catkin/src/ebot_description/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/ebot_description" TYPE FILE FILES "/media/Common/Code/AutoZRecruitment/Robot-Uprising/autoz_catkin/src/ebot_description/package.xml")
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/ebot_description" TYPE PROGRAM FILES "/media/Common/Code/AutoZRecruitment/Robot-Uprising/autoz_catkin/build/ebot_description/catkin_generated/installspace/lane_follow.py")
 endif()
 

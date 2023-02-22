@@ -1,4 +1,4 @@
-prefix=/home/ro/git/AutoZRecruitment/Robot-Uprising/autoz_catkin/devel
+prefix=/media/Common/Code/AutoZRecruitment/Robot-Uprising/autoz_catkin/devel
 
 Name: ebot_description
 Description: Description of ebot_description

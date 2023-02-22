@@ -1,4 +1,4 @@
-prefix=/home/ro/git/AutoZRecruitment/Robot-Uprising/autoz_catkin/devel
+prefix=/media/Common/Code/AutoZRecruitment/Robot-Uprising/autoz_catkin/devel
 
 Name: task1
 Description: Description of task1
