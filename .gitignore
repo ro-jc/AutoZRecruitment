@@ -1,4 +1,3 @@
 .vscode
-Robot-Uprising/autoz_catkin/build
-Robot-Uprising/autoz_catkin/devel
-
+Robot-Uprising/autoz_catkin/build/
+Robot-Uprising/autoz_catkin/devel/
