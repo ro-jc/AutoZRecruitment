@@ -7,29 +7,20 @@ VIDEO_DIMENSIONS = (640, 480)
 
 def process_frame(image):
     # image = cv.GaussianBlur(image, (3,3), 100)
+    hsv = cv.cvtColor(image, cv.COLOR_BGR2HSV)
     
-    white = cv.inRange(image, (100,100,100), (255,255,255))
-    cv.imshow('white',white);cv.waitKey(0);cv.destroyAllWindows()
+    hsv_low = np.array([168, 228, 100], np.uint8)
+    hsv_high = np.array([179, 255, 255], np.uint8)
+    mask = cv.inRange(hsv, hsv_low, hsv_high)
+    cv.imshow('mask',mask);cv.waitKey(0);cv.destroyAllWindows()
     
-    # (_, _, R) = cv.split(image)
-    # red = cv.inRange(R, 100, 255)
-    lower_red = np.array([0, 0, 10], dtype = "uint8")
-    upper_red= np.array([0, 0, 255], dtype = "uint8")
-    red_mask = cv.inRange(image, lower_red, upper_red)
-    red = cv.bitwise_and(image, image, mask=red_mask)
-    cv.imshow('red',red);cv.waitKey(0);cv.destroyAllWindows()
-
-    (B, G, R) = cv.split(image)
-    threshold_red = cv.inRange(R, 100, 255)
-    threshold_blue = cv.inRange(B, 100, 255)
-    threshold_green = cv.inRange(G, 100, 255)
-    # cv.imshow('',threshold_red);cv.waitKey(0);cv.destroyAllWindows()
+    res = cv.bitwise_and(hsv, hsv, mask=mask)
     
-    final_mask = (threshold_blue & threshold_green & threshold_red) | threshold_red
+    cv.imshow('res',res);cv.waitKey(0);cv.destroyAllWindows()
     
     
-    h = image.shape[0]
-    histogram = np.sum(image, axis=0)
+    h = res.shape[0]
+    histogram = np.sum(mask, axis=0)
     # print(np.argmax(histogram))
     print(histogram.shape)
     mid = np.int(histogram.shape[0]/2)
@@ -60,7 +51,7 @@ def process_frame(image):
     transformation_matrix = cv.getPerspectiveTransform(roi, desired)
     # inverse_transformation_matrix = cv.getPerspectiveTransform(desired, roi)
 
-    warped_image = cv.warpPerspective(final_mask, transformation_matrix, VIDEO_DIMENSIONS, flags=(cv.INTER_LINEAR))
+    warped_image = cv.warpPerspective(res, transformation_matrix, VIDEO_DIMENSIONS, flags=(cv.INTER_LINEAR))
 
     return warped_image
 

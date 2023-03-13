@@ -25,17 +25,24 @@ class LaneFollow():
 
  
     def process_frame(self):
-        # image = cv.GaussianBlur(image, (3,3), 100)
-
-        (B, G, R) = cv.split(self.raw_frame)
-        threshold_red = cv.inRange(R, 100, 255)
-        threshold_blue = cv.inRange(B, 100, 255)
-        threshold_green = cv.inRange(G, 100, 255)
-        # cv.imshow('',threshold_red);cv.waitKey(0);cv.destroyAllWindows()
+        img = cv.GaussianBlur(self.raw_frame, (3,3), 100)
+        hsv = cv.cvtColor(img, cv.COLOR_BGR2HSV)
         
-        final_mask = (threshold_red & threshold_blue & threshold_green) | threshold_red
-
-        # merged = cv.merge([final_mask,final_mask,final_mask])
+        hsv_low = np.array([123, 244, 0], np.uint8)
+        hsv_high = np.array([179, 255, 160], np.uint8)
+        mask = cv.inRange(hsv, hsv_low, hsv_high)
+        
+        res = cv.bitwise_and(hsv, hsv, mask=mask)
+        
+        h = res.shape[0]
+        histogram = np.sum(res, axis=0)
+        mid = np.int(histogram.shape[0]/2)
+        print('mid',mid)
+        l_max = np.argmax(histogram[:mid])
+        r_max = np.argmax(histogram[mid:]) + mid
+        print(l_max,r_max)
+        center = np.int((l_max+r_max)/2)
+        print(center)
 
         roi = np.float32(
             ((200, 92),
@@ -53,51 +60,16 @@ class LaneFollow():
             )
 
         transformation_matrix = cv.getPerspectiveTransform(roi, desired)
-        # inverse_transformation_matrix = cv.getPerspectiveTransform(desired, roi)
 
-        warped_image = cv.warpPerspective(final_mask, transformation_matrix, VIDEO_DIMENSIONS, flags=(cv.INTER_LINEAR))
+        warped_image = cv.warpPerspective(res, transformation_matrix, VIDEO_DIMENSIONS, flags=(cv.INTER_LINEAR))
 
         self.processed_frame = warped_image
-        # image = cv.GaussianBlur(self.raw_frame, (3,3), 100)
-
-        # (B, G, R) = cv.split(image)
-        # threshold_red = cv.inRange(R, 100, 255)
-        # threshold_blue = cv.inRange(B, 100, 255)
-        # threshold_green = cv.inRange(G, 100, 255)
-        # # cv.imshow('',threshold_red);cv.waitKey(0);cv.destroyAllWindows()
         
-        # final_mask = (threshold_red & threshold_blue & threshold_green) | threshold_red
-        # cv.imshow('final_mask',threshold_red);cv.waitKey(0);cv.destroyAllWindows()
-
-        # merged = cv.merge([final_mask,final_mask,final_mask])
-
-        # roi = np.float32(
-        #     ((200, 92),
-        #         (50, 260),
-        #         (610, 260),
-        #         (440, 92))
-        #     )
-
-        # pad = 80
-        # desired = np.float32(
-        #     ((pad, 0),
-        #         (pad, 480),
-        #         (640-pad, 480),
-        #         (640-pad, 0))
-        #     )
-
-        # transformation_matrix = cv.getPerspectiveTransform(roi, desired)
-        # # inverse_transformation_matrix = cv.getPerspectiveTransform(desired, roi)
-
-        # self.processed_frame = cv.warpPerspective(merged, transformation_matrix, VIDEO_DIMENSIONS, flags=(cv.INTER_LINEAR))
-
 
     def find_center(self, plot=False):
         image = self.processed_frame
         h = image.shape[0]
         histogram = np.sum(image[h//2:, :], axis=0)
-        cv.imshow('Histogram', image);cv.waitKey(0);cv.destroyAllWindows()
-        # histogram = np.sum(image, axis=0)
         
         mid = np.int(histogram.shape[0]/2)
         
@@ -121,27 +93,22 @@ class LaneFollow():
     def drive(self, image_raw):
         bridge = CvBridge()
         self.raw_frame = bridge.imgmsg_to_cv2(image_raw)
+        # cv.imwrite('test.jpg', self.raw_frame)
         
         self.process_frame()
-        cv.imshow('pre-Histogram',self.processed_frame);cv.waitKey(0);cv.destroyAllWindows()
         self.find_center()
-        cv.imshow('post-Histogram',self.processed_frame);cv.waitKey(0);cv.destroyAllWindows()
-        
-        # fourcc = cv.VideoWriter_fourcc(*'MJPG')
-        # out = cv.VideoWriter('output.avi', fourcc, 20.0, VIDEO_DIMENSIONS)
-        # out.write(processed_frame)
         
         true_center = 320
         print(f'true center: {true_center}\tcenter: {self.center}')
         
-        scale_factor = -0.01
+        scale_factor = -0.025
         angular = scale_factor * (self.center - true_center)
 
-        if abs(angular) < 0.5:
-            angular = 0
+        # if abs(angular) < 0.75:
+        #     angular = 0
         
         command = Twist()
-        command.linear.x = 0.75
+        command.linear.x = 2.5
         command.angular.z = angular
         
         self.pub.publish(command)
